@@ -1,0 +1,23 @@
+Testsuite: org.apache.commons.collections4.iterators.CollatingIteratorTest
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 sec
+
+Testcase: testIterateEvenOdd took 0.002 sec
+Testcase: testIterateOddEven took 0.001 sec
+Testcase: testIterateEvenEven took 0 sec
+Testcase: testIterateFibEvenOdd took 0.001 sec
+Testcase: testRemoveFromSingle took 0.001 sec
+Testcase: testRemoveFromDouble took 0 sec
+Testcase: testNullComparator took 0 sec
+Testcase: testGetSetComparator took 0 sec
+Testcase: testIterateEven took 0.001 sec
+Testcase: testEmptyIterator took 0 sec
+Testcase: testFullIterator took 0.001 sec
+Testcase: testRemove took 0 sec
+Testcase: testObjectEqualsSelf took 0.001 sec
+Testcase: testEqualsNull took 0 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0 sec
+Testcase: testSimpleSerialization took 0 sec
+Testcase: testCanonicalEmptyCollectionExists took 0 sec
+Testcase: testCanonicalFullCollectionExists took 0 sec

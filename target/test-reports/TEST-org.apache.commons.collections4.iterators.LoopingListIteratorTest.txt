@@ -1,0 +1,15 @@
+Testsuite: org.apache.commons.collections4.iterators.LoopingListIteratorTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 sec
+
+Testcase: testConstructorEx took 0.003 sec
+Testcase: testAdd took 0.001 sec
+Testcase: testSet took 0 sec
+Testcase: testLooping0 took 0.002 sec
+Testcase: testLooping1 took 0 sec
+Testcase: testLooping2 took 0 sec
+Testcase: testJoggingNotOverBoundary took 0.001 sec
+Testcase: testJoggingOverBoundary took 0 sec
+Testcase: testRemovingElementsAndIteratingForward took 0 sec
+Testcase: testRemovingElementsAndIteratingBackwards took 0 sec
+Testcase: testReset took 0.001 sec
+Testcase: testNextAndPreviousIndex took 0 sec

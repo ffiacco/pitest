@@ -1,0 +1,18 @@
+Testsuite: org.apache.commons.collections4.iterators.FilterListIteratorTest
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 sec
+
+Testcase: testWalkLists took 0.008 sec
+Testcase: testManual took 0.001 sec
+Testcase: testTruePredicate took 0.002 sec
+Testcase: testFalsePredicate took 0.002 sec
+Testcase: testEvens took 0.001 sec
+Testcase: testOdds took 0.001 sec
+Testcase: testThrees took 0.001 sec
+Testcase: testFours took 0.002 sec
+Testcase: testNestedSixes took 0.002 sec
+Testcase: testNestedSixes2 took 0.001 sec
+Testcase: testNestedSixes3 took 0.002 sec
+Testcase: testNextChangesPrevious took 0 sec
+Testcase: testPreviousChangesNext took 0.001 sec
+Testcase: testFailingHasNextBug took 0 sec
+Testcase: testCollections360 took 0.008 sec

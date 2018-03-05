@@ -1,0 +1,18 @@
+Testsuite: org.apache.commons.collections4.iterators.PushbackIteratorTest
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+
+Testcase: testNormalIteration took 0.001 sec
+Testcase: testImmediatePushback took 0.001 sec
+Testcase: testDelayedPushback took 0 sec
+Testcase: testMultiplePushback took 0.002 sec
+Testcase: testEmptyIterator took 0 sec
+Testcase: testFullIterator took 0 sec
+Testcase: testRemove took 0 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0 sec
+Testcase: testSimpleSerialization took 0 sec
+Testcase: testCanonicalEmptyCollectionExists took 0 sec
+Testcase: testCanonicalFullCollectionExists took 0.001 sec

@@ -1,0 +1,363 @@
+<html>
+<head>
+  
+    <style type='text/css'>
+   
+   .tests{ 
+     width : 50%;
+     float : left;
+   }
+   
+   .mutees{
+     float : right;
+     width : 50%;
+   }
+   
+   .unit {
+     padding-top : 20px;
+     clear : both;
+   }
+   
+   .coverage_bar {
+    display : inline-block;
+    height : 1.1em;
+    width: 130px;
+    background: #FAA;
+    margin: 0 5px;
+    vertical-align: middle;
+    border: 1px solid #AAA;
+    position : relative;
+   }
+   
+   .coverage_complete {
+    display : inline-block;
+    height : 100%;
+    background: #DFD;
+    float: left;
+   }
+   
+   .coverage_ledgend {
+        position : absolute;
+        height : 100%;
+        width: 100%;
+        left : 0;
+        top : 0;
+        text-align : center;
+   }
+   
+   .line, .mut {
+        vertical-align : middle;
+   }
+   
+   .coveragePercentage {
+        display: inline-block;
+        width: 3em;
+        text-align: right;
+   }
+  </style>
+  
+</head>
+<body>
+
+<h1>Pit Test Coverage Report</h1>
+<h2>Package Summary</h2>
+<h3>org.apache.commons.collections4.iterators</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Number of Classes</th>
+            <th>Line Coverage</th>
+            <th>Mutation Coverage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>43</td>
+            <td>84% <div class="coverage_bar"><div class="coverage_complete" style="width:84%"></div><div class="coverage_ledgend">974/1158</div></div></td>
+            <td>85% <div class="coverage_bar"><div class="coverage_complete" style="width:85%"></div><div class="coverage_ledgend">551/648</div></div></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3>Breakdown by Class</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Line Coverage</th>
+            <th>Mutation Coverage</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td><a href="./AbstractEmptyIterator.java.html">AbstractEmptyIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">12/12</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">4/4</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractIteratorDecorator.java.html">AbstractIteratorDecorator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">3/3</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">1/1</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractListIteratorDecorator.java.html">AbstractListIteratorDecorator.java</a></td>
+            <td><div class="coveragePercentage">94% </div><div class="coverage_bar"><div class="coverage_complete" style="width:94%"></div><div class="coverage_ledgend">17/18</div></div></td>
+            <td><div class="coveragePercentage">91% </div><div class="coverage_bar"><div class="coverage_complete" style="width:91%"></div><div class="coverage_ledgend">10/11</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractMapIteratorDecorator.java.html">AbstractMapIteratorDecorator.java</a></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/13</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/8</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractOrderedMapIteratorDecorator.java.html">AbstractOrderedMapIteratorDecorator.java</a></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/15</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/10</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractUntypedIteratorDecorator.java.html">AbstractUntypedIteratorDecorator.java</a></td>
+            <td><div class="coveragePercentage">89% </div><div class="coverage_bar"><div class="coverage_complete" style="width:89%"></div><div class="coverage_ledgend">8/9</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">4/4</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ArrayIterator.java.html">ArrayIterator.java</a></td>
+            <td><div class="coveragePercentage">91% </div><div class="coverage_bar"><div class="coverage_complete" style="width:91%"></div><div class="coverage_ledgend">32/35</div></div></td>
+            <td><div class="coveragePercentage">83% </div><div class="coverage_bar"><div class="coverage_complete" style="width:83%"></div><div class="coverage_ledgend">15/18</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ArrayListIterator.java.html">ArrayListIterator.java</a></td>
+            <td><div class="coveragePercentage">96% </div><div class="coverage_bar"><div class="coverage_complete" style="width:96%"></div><div class="coverage_ledgend">25/26</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">18/18</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./BoundedIterator.java.html">BoundedIterator.java</a></td>
+            <td><div class="coveragePercentage">97% </div><div class="coverage_bar"><div class="coverage_complete" style="width:97%"></div><div class="coverage_ledgend">31/32</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">25/25</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./CollatingIterator.java.html">CollatingIterator.java</a></td>
+            <td><div class="coveragePercentage">84% </div><div class="coverage_bar"><div class="coverage_complete" style="width:84%"></div><div class="coverage_ledgend">87/104</div></div></td>
+            <td><div class="coveragePercentage">74% </div><div class="coverage_bar"><div class="coverage_complete" style="width:74%"></div><div class="coverage_ledgend">45/61</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EmptyIterator.java.html">EmptyIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">6/6</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">2/2</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EmptyListIterator.java.html">EmptyListIterator.java</a></td>
+            <td><div class="coveragePercentage">83% </div><div class="coverage_bar"><div class="coverage_complete" style="width:83%"></div><div class="coverage_ledgend">5/6</div></div></td>
+            <td><div class="coveragePercentage">50% </div><div class="coverage_bar"><div class="coverage_complete" style="width:50%"></div><div class="coverage_ledgend">1/2</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EmptyMapIterator.java.html">EmptyMapIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">4/4</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">1/1</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EmptyOrderedIterator.java.html">EmptyOrderedIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">4/4</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">1/1</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EmptyOrderedMapIterator.java.html">EmptyOrderedMapIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">4/4</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">1/1</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EntrySetMapIterator.java.html">EntrySetMapIterator.java</a></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/31</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/13</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./EnumerationIterator.java.html">EnumerationIterator.java</a></td>
+            <td><div class="coveragePercentage">45% </div><div class="coverage_bar"><div class="coverage_complete" style="width:45%"></div><div class="coverage_ledgend">10/22</div></div></td>
+            <td><div class="coveragePercentage">40% </div><div class="coverage_bar"><div class="coverage_complete" style="width:40%"></div><div class="coverage_ledgend">2/5</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./FilterIterator.java.html">FilterIterator.java</a></td>
+            <td><div class="coveragePercentage">86% </div><div class="coverage_bar"><div class="coverage_complete" style="width:86%"></div><div class="coverage_ledgend">32/37</div></div></td>
+            <td><div class="coveragePercentage">87% </div><div class="coverage_bar"><div class="coverage_complete" style="width:87%"></div><div class="coverage_ledgend">13/15</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./FilterListIterator.java.html">FilterListIterator.java</a></td>
+            <td><div class="coveragePercentage">76% </div><div class="coverage_bar"><div class="coverage_complete" style="width:76%"></div><div class="coverage_ledgend">58/76</div></div></td>
+            <td><div class="coveragePercentage">89% </div><div class="coverage_bar"><div class="coverage_complete" style="width:89%"></div><div class="coverage_ledgend">40/45</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./IteratorChain.java.html">IteratorChain.java</a></td>
+            <td><div class="coveragePercentage">77% </div><div class="coverage_bar"><div class="coverage_complete" style="width:77%"></div><div class="coverage_ledgend">44/57</div></div></td>
+            <td><div class="coveragePercentage">52% </div><div class="coverage_bar"><div class="coverage_complete" style="width:52%"></div><div class="coverage_ledgend">15/29</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./IteratorEnumeration.java.html">IteratorEnumeration.java</a></td>
+            <td><div class="coveragePercentage">60% </div><div class="coverage_bar"><div class="coverage_complete" style="width:60%"></div><div class="coverage_ledgend">6/10</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">3/3</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./IteratorIterable.java.html">IteratorIterable.java</a></td>
+            <td><div class="coveragePercentage">79% </div><div class="coverage_bar"><div class="coverage_complete" style="width:79%"></div><div class="coverage_ledgend">15/19</div></div></td>
+            <td><div class="coveragePercentage">89% </div><div class="coverage_bar"><div class="coverage_complete" style="width:89%"></div><div class="coverage_ledgend">8/9</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./LazyIteratorChain.java.html">LazyIteratorChain.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">28/28</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">14/14</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ListIteratorWrapper.java.html">ListIteratorWrapper.java</a></td>
+            <td><div class="coveragePercentage">85% </div><div class="coverage_bar"><div class="coverage_complete" style="width:85%"></div><div class="coverage_ledgend">61/72</div></div></td>
+            <td><div class="coveragePercentage">90% </div><div class="coverage_bar"><div class="coverage_complete" style="width:90%"></div><div class="coverage_ledgend">46/51</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./LoopingIterator.java.html">LoopingIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">17/17</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">12/12</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./LoopingListIterator.java.html">LoopingListIterator.java</a></td>
+            <td><div class="coveragePercentage">87% </div><div class="coverage_bar"><div class="coverage_complete" style="width:87%"></div><div class="coverage_ledgend">41/47</div></div></td>
+            <td><div class="coveragePercentage">93% </div><div class="coverage_bar"><div class="coverage_complete" style="width:93%"></div><div class="coverage_ledgend">27/29</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./NodeListIterator.java.html">NodeListIterator.java</a></td>
+            <td><div class="coveragePercentage">94% </div><div class="coverage_bar"><div class="coverage_complete" style="width:94%"></div><div class="coverage_ledgend">15/16</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">11/11</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ObjectArrayIterator.java.html">ObjectArrayIterator.java</a></td>
+            <td><div class="coveragePercentage">93% </div><div class="coverage_bar"><div class="coverage_complete" style="width:93%"></div><div class="coverage_ledgend">27/29</div></div></td>
+            <td><div class="coveragePercentage">89% </div><div class="coverage_bar"><div class="coverage_complete" style="width:89%"></div><div class="coverage_ledgend">16/18</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ObjectArrayListIterator.java.html">ObjectArrayListIterator.java</a></td>
+            <td><div class="coveragePercentage">88% </div><div class="coverage_bar"><div class="coverage_complete" style="width:88%"></div><div class="coverage_ledgend">23/26</div></div></td>
+            <td><div class="coveragePercentage">94% </div><div class="coverage_bar"><div class="coverage_complete" style="width:94%"></div><div class="coverage_ledgend">16/17</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ObjectGraphIterator.java.html">ObjectGraphIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">59/59</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">27/27</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./PeekingIterator.java.html">PeekingIterator.java</a></td>
+            <td><div class="coveragePercentage">90% </div><div class="coverage_bar"><div class="coverage_complete" style="width:90%"></div><div class="coverage_ledgend">36/40</div></div></td>
+            <td><div class="coveragePercentage">86% </div><div class="coverage_bar"><div class="coverage_complete" style="width:86%"></div><div class="coverage_ledgend">19/22</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./PermutationIterator.java.html">PermutationIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">45/45</div></div></td>
+            <td><div class="coveragePercentage">90% </div><div class="coverage_bar"><div class="coverage_complete" style="width:90%"></div><div class="coverage_ledgend">37/41</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./PushbackIterator.java.html">PushbackIterator.java</a></td>
+            <td><div class="coveragePercentage">80% </div><div class="coverage_bar"><div class="coverage_complete" style="width:80%"></div><div class="coverage_ledgend">12/15</div></div></td>
+            <td><div class="coveragePercentage">89% </div><div class="coverage_bar"><div class="coverage_complete" style="width:89%"></div><div class="coverage_ledgend">8/9</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ReverseListIterator.java.html">ReverseListIterator.java</a></td>
+            <td><div class="coveragePercentage">94% </div><div class="coverage_bar"><div class="coverage_complete" style="width:94%"></div><div class="coverage_ledgend">31/33</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">13/13</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./SingletonIterator.java.html">SingletonIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">23/23</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">10/10</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./SingletonListIterator.java.html">SingletonListIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">32/32</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">22/22</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./SkippingIterator.java.html">SkippingIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">17/17</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">11/11</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./TransformIterator.java.html">TransformIterator.java</a></td>
+            <td><div class="coveragePercentage">45% </div><div class="coverage_bar"><div class="coverage_complete" style="width:45%"></div><div class="coverage_ledgend">9/20</div></div></td>
+            <td><div class="coveragePercentage">67% </div><div class="coverage_bar"><div class="coverage_complete" style="width:67%"></div><div class="coverage_ledgend">4/6</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./UnmodifiableIterator.java.html">UnmodifiableIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">12/12</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">6/6</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./UnmodifiableListIterator.java.html">UnmodifiableListIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">18/18</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">10/10</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./UnmodifiableMapIterator.java.html">UnmodifiableMapIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">15/15</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">8/8</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./UnmodifiableOrderedMapIterator.java.html">UnmodifiableOrderedMapIterator.java</a></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">17/17</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">10/10</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ZippingIterator.java.html">ZippingIterator.java</a></td>
+            <td><div class="coveragePercentage">97% </div><div class="coverage_bar"><div class="coverage_complete" style="width:97%"></div><div class="coverage_ledgend">33/34</div></div></td>
+            <td><div class="coveragePercentage">100% </div><div class="coverage_bar"><div class="coverage_complete" style="width:100%"></div><div class="coverage_ledgend">15/15</div></div></td>
+        </tr>
+
+     </tbody>
+</table>
+<br/>
+
+
+
+<hr/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.4
+
+</body>
+</html>

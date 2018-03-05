@@ -1,0 +1,11 @@
+Testsuite: org.apache.commons.collections4.BagUtilsTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 sec
+
+Testcase: testSynchronizedBag took 0.014 sec
+Testcase: testUnmodifiableSortedBag took 0 sec
+Testcase: testPredicatedSortedBag took 0.003 sec
+Testcase: testTransformedSortedBag took 0.002 sec
+Testcase: testPredicatedBag took 0 sec
+Testcase: testTransformedBag took 0 sec
+Testcase: testSynchronizedSortedBag took 0.003 sec
+Testcase: testUnmodifiableBag took 0 sec

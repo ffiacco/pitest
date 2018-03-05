@@ -1,0 +1,20 @@
+Testsuite: org.apache.commons.collections4.IterableUtilsTest
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.08 sec
+
+Testcase: indexOf took 0.009 sec
+Testcase: find took 0 sec
+Testcase: forEach took 0.002 sec
+Testcase: frequency took 0.003 sec
+Testcase: forEachFailure took 0.001 sec
+Testcase: forEachButLast took 0 sec
+Testcase: containsWithEquator took 0.001 sec
+Testcase: frequencyOfNull took 0 sec
+Testcase: countMatches took 0 sec
+Testcase: matchesAny took 0.001 sec
+Testcase: matchesAll took 0.002 sec
+Testcase: getFromIterable took 0.005 sec
+Testcase: partition took 0.005 sec
+Testcase: partitionMultiplePredicates took 0 sec
+Testcase: testToString took 0.003 sec
+Testcase: testToStringDelimiter took 0.002 sec
+Testcase: testToStringWithNullArguments took 0.004 sec

@@ -1,0 +1,43 @@
+Testsuite: org.apache.commons.collections4.collection.CompositeCollectionTest
+Tests run: 40, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 sec
+
+Testcase: testUnsupportedRemove took 0.003 sec
+Testcase: testSize took 0.001 sec
+Testcase: testMultipleCollectionsSize took 0 sec
+Testcase: testIsEmpty took 0.001 sec
+Testcase: testIterator took 0 sec
+Testcase: testClear took 0 sec
+Testcase: testContainsAll took 0 sec
+Testcase: testRetainAll took 0 sec
+Testcase: testAddAllMutator took 0.001 sec
+Testcase: testAddMutator took 0.001 sec
+Testcase: testToCollection took 0 sec
+Testcase: testAddAllToCollection took 0 sec
+Testcase: testRemove took 0.001 sec
+Testcase: testRemoveAll took 0 sec
+Testcase: testRemoveComposited took 0 sec
+Testcase: testCollectionAdd took 0 sec
+Testcase: testCollectionAddAll took 0 sec
+Testcase: testUnsupportedAdd took 0.001 sec
+Testcase: testCollectionClear took 0 sec
+Testcase: testCollectionContains took 0 sec
+Testcase: testCollectionContainsAll took 0.001 sec
+Testcase: testCollectionIsEmpty took 0 sec
+Testcase: testCollectionIterator took 0 sec
+Testcase: testCollectionIteratorRemove took 0.001 sec
+Testcase: testCollectionRemove took 0 sec
+Testcase: testCollectionRemoveAll took 0 sec
+Testcase: testCollectionRetainAll took 0 sec
+Testcase: testCollectionSize took 0 sec
+Testcase: testCollectionToArray took 0 sec
+Testcase: testCollectionToArray2 took 0.001 sec
+Testcase: testCollectionToString took 0 sec
+Testcase: testCollectionIteratorFailFast took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0.011 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSimpleSerialization took 0.001 sec
+Testcase: testCanonicalEmptyCollectionExists took 0 sec
+Testcase: testCanonicalFullCollectionExists took 0 sec

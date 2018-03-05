@@ -1,0 +1,9 @@
+Testsuite: org.apache.commons.collections4.ComparatorUtilsTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 sec
+
+Testcase: min took 0.003 sec
+Testcase: max took 0.001 sec
+Testcase: booleanComparator took 0.001 sec
+Testcase: chainedComparator took 0.001 sec
+Testcase: nullLowComparator took 0 sec
+Testcase: nullHighComparator took 0 sec

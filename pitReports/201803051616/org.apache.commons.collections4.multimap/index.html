@@ -1,0 +1,153 @@
+<html>
+<head>
+  
+    <style type='text/css'>
+   
+   .tests{ 
+     width : 50%;
+     float : left;
+   }
+   
+   .mutees{
+     float : right;
+     width : 50%;
+   }
+   
+   .unit {
+     padding-top : 20px;
+     clear : both;
+   }
+   
+   .coverage_bar {
+    display : inline-block;
+    height : 1.1em;
+    width: 130px;
+    background: #FAA;
+    margin: 0 5px;
+    vertical-align: middle;
+    border: 1px solid #AAA;
+    position : relative;
+   }
+   
+   .coverage_complete {
+    display : inline-block;
+    height : 100%;
+    background: #DFD;
+    float: left;
+   }
+   
+   .coverage_ledgend {
+        position : absolute;
+        height : 100%;
+        width: 100%;
+        left : 0;
+        top : 0;
+        text-align : center;
+   }
+   
+   .line, .mut {
+        vertical-align : middle;
+   }
+   
+   .coveragePercentage {
+        display: inline-block;
+        width: 3em;
+        text-align: right;
+   }
+  </style>
+  
+</head>
+<body>
+
+<h1>Pit Test Coverage Report</h1>
+<h2>Package Summary</h2>
+<h3>org.apache.commons.collections4.multimap</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Number of Classes</th>
+            <th>Line Coverage</th>
+            <th>Mutation Coverage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>8</td>
+            <td>11% <div class="coverage_bar"><div class="coverage_complete" style="width:11%"></div><div class="coverage_ledgend">56/502</div></div></td>
+            <td>7% <div class="coverage_bar"><div class="coverage_complete" style="width:7%"></div><div class="coverage_ledgend">20/294</div></div></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3>Breakdown by Class</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Line Coverage</th>
+            <th>Mutation Coverage</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td><a href="./AbstractListValuedMap.java.html">AbstractListValuedMap.java</a></td>
+            <td><div class="coveragePercentage">11% </div><div class="coverage_bar"><div class="coverage_complete" style="width:11%"></div><div class="coverage_ledgend">9/81</div></div></td>
+            <td><div class="coveragePercentage">11% </div><div class="coverage_bar"><div class="coverage_complete" style="width:11%"></div><div class="coverage_ledgend">4/37</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractMultiValuedMap.java.html">AbstractMultiValuedMap.java</a></td>
+            <td><div class="coveragePercentage">11% </div><div class="coverage_bar"><div class="coverage_complete" style="width:11%"></div><div class="coverage_ledgend">30/269</div></div></td>
+            <td><div class="coveragePercentage">6% </div><div class="coverage_bar"><div class="coverage_complete" style="width:6%"></div><div class="coverage_ledgend">11/173</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractMultiValuedMapDecorator.java.html">AbstractMultiValuedMapDecorator.java</a></td>
+            <td><div class="coveragePercentage">19% </div><div class="coverage_bar"><div class="coverage_complete" style="width:19%"></div><div class="coverage_ledgend">6/31</div></div></td>
+            <td><div class="coveragePercentage">8% </div><div class="coverage_bar"><div class="coverage_complete" style="width:8%"></div><div class="coverage_ledgend">2/26</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./AbstractSetValuedMap.java.html">AbstractSetValuedMap.java</a></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/20</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/10</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./ArrayListValuedHashMap.java.html">ArrayListValuedHashMap.java</a></td>
+            <td><div class="coveragePercentage">24% </div><div class="coverage_bar"><div class="coverage_complete" style="width:24%"></div><div class="coverage_ledgend">6/25</div></div></td>
+            <td><div class="coveragePercentage">13% </div><div class="coverage_bar"><div class="coverage_complete" style="width:13%"></div><div class="coverage_ledgend">1/8</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./HashSetValuedHashMap.java.html">HashSetValuedHashMap.java</a></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/21</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/6</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./TransformedMultiValuedMap.java.html">TransformedMultiValuedMap.java</a></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/36</div></div></td>
+            <td><div class="coveragePercentage">0% </div><div class="coverage_bar"><div class="coverage_complete" style="width:0%"></div><div class="coverage_ledgend">0/24</div></div></td>
+        </tr>
+
+        <tr>
+            <td><a href="./UnmodifiableMultiValuedMap.java.html">UnmodifiableMultiValuedMap.java</a></td>
+            <td><div class="coveragePercentage">26% </div><div class="coverage_bar"><div class="coverage_complete" style="width:26%"></div><div class="coverage_ledgend">5/19</div></div></td>
+            <td><div class="coveragePercentage">20% </div><div class="coverage_bar"><div class="coverage_complete" style="width:20%"></div><div class="coverage_ledgend">2/10</div></div></td>
+        </tr>
+
+     </tbody>
+</table>
+<br/>
+
+
+
+<hr/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.4
+
+</body>
+</html>

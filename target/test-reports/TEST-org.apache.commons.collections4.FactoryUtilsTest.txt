@@ -1,0 +1,19 @@
+Testsuite: org.apache.commons.collections4.FactoryUtilsTest
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 sec
+
+Testcase: testExceptionFactory took 0.003 sec
+Testcase: testNullFactory took 0.001 sec
+Testcase: testConstantFactoryNull took 0 sec
+Testcase: testConstantFactoryConstant took 0 sec
+Testcase: testPrototypeFactoryNull took 0.001 sec
+Testcase: testPrototypeFactoryPublicCloneMethod took 0.002 sec
+Testcase: testPrototypeFactoryPublicCopyConstructor took 0.002 sec
+Testcase: testPrototypeFactoryPublicSerialization took 0.008 sec
+Testcase: testPrototypeFactoryPublicSerializationError took 0.032 sec
+Testcase: testPrototypeFactoryPublicBad took 0 sec
+Testcase: instantiateFactoryNull took 0 sec
+Testcase: instantiateFactorySimple took 0.001 sec
+Testcase: instantiateFactoryMismatch took 0 sec
+Testcase: instantiateFactoryNoConstructor took 0 sec
+Testcase: instantiateFactoryComplex took 0.009 sec
+Testcase: testSingletonPatternInSerialization took 0.002 sec

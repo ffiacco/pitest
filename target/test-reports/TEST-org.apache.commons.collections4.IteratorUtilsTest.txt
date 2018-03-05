@@ -1,0 +1,29 @@
+Testsuite: org.apache.commons.collections4.IteratorUtilsTest
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 sec
+
+Testcase: indexOf took 0.007 sec
+Testcase: find took 0 sec
+Testcase: forEach took 0.002 sec
+Testcase: testAsIterable took 0 sec
+Testcase: testAsIterableNull took 0 sec
+Testcase: testAsMultipleIterable took 0.001 sec
+Testcase: testAsMultipleIterableNull took 0 sec
+Testcase: testToList took 0.001 sec
+Testcase: testToArray took 0 sec
+Testcase: testToArray2 took 0 sec
+Testcase: testArrayIterator took 0.002 sec
+Testcase: testArrayListIterator took 0.002 sec
+Testcase: testEmptyIterator took 0 sec
+Testcase: testEmptyListIterator took 0 sec
+Testcase: testEmptyMapIterator took 0 sec
+Testcase: testEmptyOrderedIterator took 0.001 sec
+Testcase: testEmptyOrderedMapIterator took 0.001 sec
+Testcase: testUnmodifiableIteratorIteration took 0.001 sec
+Testcase: testUnmodifiableListIteratorIteration took 0.001 sec
+Testcase: testUnmodifiableIteratorImmutability took 0 sec
+Testcase: testUnmodifiableListIteratorImmutability took 0 sec
+Testcase: testNodeListIterator took 0.024 sec
+Testcase: testNodeIterator took 0.003 sec
+Testcase: testCollatedIterator took 0.003 sec
+Testcase: forEachButLast took 0 sec
+Testcase: getFromIterator took 0.002 sec

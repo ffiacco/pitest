@@ -1,0 +1,21 @@
+Testsuite: org.apache.commons.collections4.TransformerUtilsTest
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 sec
+
+Testcase: testExceptionTransformer took 0.003 sec
+Testcase: testNullTransformer took 0.001 sec
+Testcase: testNopTransformer took 0 sec
+Testcase: testConstantTransformer took 0.001 sec
+Testcase: testCloneTransformer took 0.012 sec
+Testcase: testMapTransformer took 0.001 sec
+Testcase: testExecutorTransformer took 0.003 sec
+Testcase: testPredicateTransformer took 0.002 sec
+Testcase: testFactoryTransformer took 0.002 sec
+Testcase: testChainedTransformer took 0.002 sec
+Testcase: testIfTransformer took 0.003 sec
+Testcase: testSwitchTransformer took 0.002 sec
+Testcase: testSwitchMapTransformer took 0 sec
+Testcase: testInvokerTransformer took 0.001 sec
+Testcase: testInvokerTransformer2 took 0 sec
+Testcase: testStringValueTransformer took 0.001 sec
+Testcase: testInstantiateTransformerNull took 0.002 sec
+Testcase: testSingletonPatternInSerialization took 0.009 sec

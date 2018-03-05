@@ -1,0 +1,8 @@
+Testsuite: org.apache.commons.collections4.collection.PredicatedCollectionBuilderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 sec
+
+Testcase: createPredicatedCollectionWithNotNullPredicate took 0.006 sec
+Testcase: addAllPass took 0 sec
+Testcase: addPass took 0 sec
+Testcase: addFail took 0 sec
+Testcase: createPredicatedCollectionWithPredicate took 0.001 sec

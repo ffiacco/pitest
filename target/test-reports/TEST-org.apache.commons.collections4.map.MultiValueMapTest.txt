@@ -1,0 +1,39 @@
+Testsuite: org.apache.commons.collections4.map.MultiValueMapTest
+Tests run: 36, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 sec
+
+Testcase: testNoMappingReturnsNull took 0.003 sec
+Testcase: testMultipleValues took 0 sec
+Testcase: testContainsValue took 0 sec
+Testcase: testKeyContainsValue took 0 sec
+Testcase: testValues took 0.008 sec
+Testcase: testKeyedIterator took 0.005 sec
+Testcase: testRemoveAllViaIterator took 0 sec
+Testcase: testRemoveAllViaKeyedIterator took 0.001 sec
+Testcase: testIterator took 0.003 sec
+Testcase: testRemoveAllViaEntryIterator took 0 sec
+Testcase: testTotalSizeA took 0 sec
+Testcase: testMapEquals took 0 sec
+Testcase: testGetCollection took 0 sec
+Testcase: testSize took 0 sec
+Testcase: testValueCollectionType took 0 sec
+Testcase: testTotalSize took 0 sec
+Testcase: testSize_Key took 0 sec
+Testcase: testIterator_Key took 0 sec
+Testcase: testContainsValue_Key took 0 sec
+Testcase: testPutWithList took 0 sec
+Testcase: testPutWithSet took 0 sec
+Testcase: testPutAll_Map1 took 0 sec
+Testcase: testPutAll_Map2 took 0 sec
+Testcase: testPutAll_KeyCollection took 0 sec
+Testcase: testRemove_KeyItem took 0 sec
+Testcase: testUnsafeDeSerialization took 0.019 sec
+Testcase: testEmptyMapCompatibility took 0.001 sec
+Testcase: testFullMapCompatibility took 0.001 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0.001 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0.001 sec
+Testcase: testSimpleSerialization took 0.003 sec
+Testcase: testCanonicalEmptyCollectionExists took 0.001 sec
+Testcase: testCanonicalFullCollectionExists took 0 sec

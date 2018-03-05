@@ -1,0 +1,16 @@
+Testsuite: org.apache.commons.collections4.comparators.ComparableComparatorTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 sec
+
+Testcase: testEmptyListSort took 0.003 sec
+Testcase: testReverseListSort took 0 sec
+Testcase: testRandomListSort took 0.001 sec
+Testcase: testComparatorIsSerializable took 0.003 sec
+Testcase: testComparatorCompatibility took 0.008 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0.001 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0.001 sec
+Testcase: testSimpleSerialization took 0 sec
+Testcase: testCanonicalEmptyCollectionExists took 0 sec
+Testcase: testCanonicalFullCollectionExists took 0 sec

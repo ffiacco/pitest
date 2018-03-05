@@ -1,0 +1,9 @@
+Testsuite: org.apache.commons.collections4.functors.ComparatorPredicateTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 sec
+
+Testcase: compareEquals took 0.002 sec
+Testcase: compareGreater took 0 sec
+Testcase: compareLess took 0 sec
+Testcase: compareGreaterOrEqual took 0 sec
+Testcase: compareLessOrEqual took 0 sec
+Testcase: predicateSanityTests took 0 sec

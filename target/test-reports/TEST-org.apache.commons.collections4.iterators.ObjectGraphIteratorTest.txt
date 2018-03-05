@@ -1,0 +1,29 @@
+Testsuite: org.apache.commons.collections4.iterators.ObjectGraphIteratorTest
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 sec
+
+Testcase: testIteratorConstructor_null1 took 0.001 sec
+Testcase: testIteratorConstructor_null_next took 0 sec
+Testcase: testIteratorConstructor_null_remove took 0 sec
+Testcase: testIteratorConstructorIteration_Empty took 0 sec
+Testcase: testIteratorConstructorIteration_Simple took 0 sec
+Testcase: testIteratorConstructorIteration_SimpleNoHasNext took 0 sec
+Testcase: testIteratorConstructorIteration_WithEmptyIterators took 0.008 sec
+Testcase: testIteratorConstructorRemove took 0 sec
+Testcase: testIteration_IteratorOfIterators took 0 sec
+Testcase: testIteration_IteratorOfIteratorsWithEmptyIterators took 0 sec
+Testcase: testIteration_RootNull took 0 sec
+Testcase: testIteration_RootNoTransformer took 0.001 sec
+Testcase: testIteration_Transformed1 took 0.002 sec
+Testcase: testIteration_Transformed2 took 0 sec
+Testcase: testIteration_Transformed3 took 0 sec
+Testcase: testEmptyIterator took 0 sec
+Testcase: testFullIterator took 0.001 sec
+Testcase: testRemove took 0 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0 sec
+Testcase: testSimpleSerialization took 0 sec
+Testcase: testCanonicalEmptyCollectionExists took 0.001 sec
+Testcase: testCanonicalFullCollectionExists took 0 sec

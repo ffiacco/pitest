@@ -1,0 +1,17 @@
+Testsuite: org.apache.commons.collections4.iterators.NodeListIteratorTest
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.087 sec
+
+Testcase: testNullConstructor took 0.053 sec
+Testcase: testEmptyIteratorWithNodeConstructor took 0.009 sec
+Testcase: testFullIteratorWithNodeConstructor took 0.001 sec
+Testcase: testEmptyIterator took 0.002 sec
+Testcase: testFullIterator took 0 sec
+Testcase: testRemove took 0.001 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0.001 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0 sec
+Testcase: testSimpleSerialization took 0 sec
+Testcase: testCanonicalEmptyCollectionExists took 0.001 sec
+Testcase: testCanonicalFullCollectionExists took 0.003 sec

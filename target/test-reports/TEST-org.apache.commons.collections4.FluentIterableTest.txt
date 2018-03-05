@@ -1,0 +1,29 @@
+Testsuite: org.apache.commons.collections4.FluentIterableTest
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 sec
+
+Testcase: get took 0.006 sec
+Testcase: limit took 0.006 sec
+Testcase: isEmpty took 0 sec
+Testcase: contains took 0.003 sec
+Testcase: size took 0 sec
+Testcase: toArray took 0.002 sec
+Testcase: iterator took 0 sec
+Testcase: zip took 0.003 sec
+Testcase: forEach took 0.001 sec
+Testcase: reverse took 0.002 sec
+Testcase: skip took 0.003 sec
+Testcase: copyInto took 0 sec
+Testcase: filter took 0.002 sec
+Testcase: eval took 0 sec
+Testcase: factoryMethodOf took 0.001 sec
+Testcase: appendElements took 0.003 sec
+Testcase: appendIterable took 0.001 sec
+Testcase: collate took 0.003 sec
+Testcase: collateWithComparator took 0.001 sec
+Testcase: transform took 0.002 sec
+Testcase: unique took 0.001 sec
+Testcase: unmodifiable took 0.002 sec
+Testcase: asEnumeration took 0.002 sec
+Testcase: allMatch took 0 sec
+Testcase: anyMatch took 0 sec
+Testcase: testToString took 0.002 sec

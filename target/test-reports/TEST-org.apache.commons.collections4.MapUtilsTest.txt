@@ -1,0 +1,38 @@
+Testsuite: org.apache.commons.collections4.MapUtilsTest
+Tests run: 35, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 sec
+
+Testcase: testPredicatedMap took 0.011 sec
+Testcase: testLazyMapFactory took 0.002 sec
+Testcase: testLazyMapTransformer took 0.001 sec
+Testcase: testInvertMap took 0 sec
+Testcase: testPutAll_Map_array took 0.003 sec
+Testcase: testConvertResourceBundle took 0 sec
+Testcase: testDebugAndVerbosePrintCasting took 0.006 sec
+Testcase: testDebugAndVerbosePrintNullMap took 0 sec
+Testcase: testVerbosePrintNullLabel took 0.001 sec
+Testcase: testDebugPrintNullLabel took 0 sec
+Testcase: testVerbosePrintNullLabelAndMap took 0 sec
+Testcase: testDebugPrintNullLabelAndMap took 0 sec
+Testcase: testVerbosePrintNullStream took 0.001 sec
+Testcase: testDebugPrintNullStream took 0 sec
+Testcase: testDebugPrintNullKey took 0.001 sec
+Testcase: testVerbosePrintNullKey took 0 sec
+Testcase: testDebugPrintNullKeyToMap1 took 0 sec
+Testcase: testVerbosePrintNullKeyToMap1 took 0 sec
+Testcase: testDebugPrintNullKeyToMap2 took 0.001 sec
+Testcase: testVerbosePrintNullKeyToMap2 took 0 sec
+Testcase: testVerbosePrint took 0 sec
+Testcase: testDebugPrint took 0 sec
+Testcase: testVerbosePrintSelfReference took 0 sec
+Testcase: testDebugPrintSelfReference took 0.002 sec
+Testcase: testEmptyIfNull took 0 sec
+Testcase: testIsEmptyWithEmptyMap took 0 sec
+Testcase: testIsEmptyWithNonEmptyMap took 0 sec
+Testcase: testIsEmptyWithNull took 0 sec
+Testcase: testIsNotEmptyWithEmptyMap took 0 sec
+Testcase: testIsNotEmptyWithNonEmptyMap took 0 sec
+Testcase: testIsNotEmptyWithNull took 0 sec
+Testcase: testPopulateMap took 0.004 sec
+Testcase: testPopulateMultiMap took 0.005 sec
+Testcase: testIterableMap took 0.004 sec
+Testcase: testIterableSortedMap took 0.001 sec

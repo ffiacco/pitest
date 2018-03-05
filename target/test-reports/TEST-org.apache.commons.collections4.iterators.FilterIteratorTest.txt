@@ -1,0 +1,19 @@
+Testsuite: org.apache.commons.collections4.iterators.FilterIteratorTest
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 sec
+
+Testcase: testRepeatedHasNext took 0.001 sec
+Testcase: testRepeatedNext took 0 sec
+Testcase: testReturnValues took 0.001 sec
+Testcase: testSetIterator took 0.001 sec
+Testcase: testSetPredicate took 0 sec
+Testcase: testEmptyIterator took 0.002 sec
+Testcase: testFullIterator took 0 sec
+Testcase: testRemove took 0 sec
+Testcase: testObjectEqualsSelf took 0 sec
+Testcase: testEqualsNull took 0 sec
+Testcase: testObjectHashCodeEqualsSelfHashCode took 0 sec
+Testcase: testObjectHashCodeEqualsContract took 0 sec
+Testcase: testSerializeDeserializeThenCompare took 0 sec
+Testcase: testSimpleSerialization took 0 sec
+Testcase: testCanonicalEmptyCollectionExists took 0 sec
+Testcase: testCanonicalFullCollectionExists took 0 sec

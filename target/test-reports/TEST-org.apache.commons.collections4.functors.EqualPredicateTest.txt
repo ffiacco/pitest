@@ -1,0 +1,7 @@
+Testsuite: org.apache.commons.collections4.functors.EqualPredicateTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 sec
+
+Testcase: testNullArgumentEqualsNullPredicate took 0.002 sec
+Testcase: objectFactoryUsesEqualsForTest took 0 sec
+Testcase: testPredicateTypeCanBeSuperClassOfObject took 0 sec
+Testcase: predicateSanityTests took 0 sec
