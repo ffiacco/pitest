@@ -1,0 +1,2323 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+
+.pop {outline:none; }
+.pop strong {line-height:30px;}
+.pop {text-decoration:none;}
+.pop span { z-index:10;display:none; padding:14px 20px; margin-top:-30px; margin-left:28px; width:800px; line-height:16px; word-wrap:break-word; }
+.pop:hover span{ display:inline; position:absolute; color:#111; border:1px solid #DCA; background:#fffAF0;}
+
+.pop span { border-radius:4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 5px 5px 8px #CCC; -webkit-box-shadow: 5px 5px 8px #CCC; box-shadow: 5px 5px 8px #CCC; }
+</style>
+
+</head>
+<body>
+
+
+<h1>AbstractMapDecorator.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Licensed to the Apache Software Foundation (ASF) under one or more</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * contributor license agreements.  See the NOTICE file distributed with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * this work for additional information regarding copyright ownership.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * The ASF licenses this file to You under the Apache License, Version 2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_6'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * (the &#34;License&#34;); you may not use this file except in compliance with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_7'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * the License.  You may obtain a copy of the License at</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_8'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      http://www.apache.org/licenses/LICENSE-2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Unless required by applicable law or agreed to in writing, software</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_12'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * distributed under the License is distributed on an &#34;AS IS&#34; BASIS,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_13'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_14'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * See the License for the specific language governing permissions and</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_15'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * limitations under the License.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_16'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_17'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.apache.commons.collections4.map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_18'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_19'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Collection;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Set;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_22'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Provides a base decorator that enables additional functionality to be added</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * to a Map via decoration.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_26'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_27'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Methods are forwarded directly to the decorated map.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_28'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_29'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * This implementation does not perform any special processing with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_30'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * {@link #entrySet()}, {@link #keySet()} or {@link #values()}. Instead</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_31'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * it simply returns the set/collection from the wrapped map. This may be</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_32'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * undesirable, for example if you are trying to write a validating</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_33'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * implementation it would provide a loophole around the validation.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_34'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * But, you might want that loophole, so this class is kept simple.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_35'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_36'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @param &#60;K&#62; the type of the keys in the map</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_37'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @param &#60;V&#62; the type of the values in the map</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_38'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @since 3.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_39'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @version $Id: AbstractMapDecorator.java 1686855 2015-06-22 13:00:27Z tn $</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_40'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_41'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public abstract class AbstractMapDecorator&#60;K, V&#62; extends AbstractIterableMap&#60;K, V&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_42'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_43'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** The map to decorate */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_44'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    transient Map&#60;K, V&#62; map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_45'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_46'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_47'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Constructor only used in deserialization, do not use otherwise.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_48'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @since 3.1</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_49'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_50'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected AbstractMapDecorator() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_51'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        super();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_52'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_53'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_54'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_55'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Constructor that wraps (not copies).</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_56'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_57'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param map  the map to decorate, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_58'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws NullPointerException if the map is null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_59'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_60'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    protected AbstractMapDecorator(final Map&#60;K, V&#62; map) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_61'>1</a>
+<span>
+1. <init> : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (map == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_62'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw new NullPointerException(&#34;Map must not be null.&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_63'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_64'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.map = map;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_65'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_66'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_67'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_68'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Gets the map being decorated.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_69'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_70'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return the decorated map</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_71'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_72'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Map&#60;K, V&#62; decorated() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_73'/>
+73
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_73'>1</a>
+<span>
+1. decorated : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::decorated to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_74'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_75'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_76'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    //-----------------------------------------------------------------------</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_77'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void clear() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_78'/>
+78
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_78'>1</a>
+<span>
+1. clear : removed call to java/util/Map::clear &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        decorated().clear();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_79'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_80'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_81'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean containsKey(final Object key) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_82'/>
+82
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_82'>1</a>
+<span>
+1. containsKey : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().containsKey(key);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_83'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_84'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_85'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean containsValue(final Object value) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_86'/>
+86
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_86'>1</a>
+<span>
+1. containsValue : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().containsValue(value);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_87'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_88'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_89'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Set&#60;Map.Entry&#60;K, V&#62;&#62; entrySet() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_90'/>
+90
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_90'>1</a>
+<span>
+1. entrySet : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::entrySet to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().entrySet();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_91'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_92'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_93'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public V get(final Object key) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_94'/>
+94
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_94'>1</a>
+<span>
+1. get : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::get to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().get(key);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_95'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_96'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_97'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean isEmpty() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_98'/>
+98
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_98'>1</a>
+<span>
+1. isEmpty : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().isEmpty();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_99'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_100'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_101'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Set&#60;K&#62; keySet() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_102'/>
+102
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_102'>1</a>
+<span>
+1. keySet : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::keySet to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().keySet();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_103'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_104'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_105'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public V put(final K key, final V value) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_106'/>
+106
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_106'>1</a>
+<span>
+1. put : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::put to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().put(key, value);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_107'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_108'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_109'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void putAll(final Map&#60;? extends K, ? extends V&#62; mapToCopy) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_110'/>
+110
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_110'>1</a>
+<span>
+1. putAll : removed call to java/util/Map::putAll &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        decorated().putAll(mapToCopy);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_111'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_112'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_113'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public V remove(final Object key) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_114'/>
+114
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_114'>1</a>
+<span>
+1. remove : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::remove to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().remove(key);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_115'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_116'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_117'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int size() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_118'/>
+118
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_118'>1</a>
+<span>
+1. size : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().size();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_119'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_120'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_121'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Collection&#60;V&#62; values() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_122'/>
+122
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_122'>1</a>
+<span>
+1. values : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::values to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().values();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_123'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_124'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_125'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_126'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean equals(final Object object) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_127'/>
+127
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_127'>1</a>
+<span>
+1. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (object == this) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_128'/>
+128
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_128'>1</a>
+<span>
+1. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_129'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_130'/>
+130
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_130'>1</a>
+<span>
+1. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().equals(object);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_131'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_132'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_133'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_134'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int hashCode() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_135'/>
+135
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_135'>1</a>
+<span>
+1. hashCode : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().hashCode();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_136'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_137'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_138'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_139'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public String toString() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_140'/>
+140
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_140'>1</a>
+<span>
+1. toString : mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::toString to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().toString();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_141'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_142'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6607ffd6_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_143'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b><init><br/><b>Killed by : </b>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEmptyMapCompatibility(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest)</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_73'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decorated<br/><b>Killed by : </b>org.apache.commons.collections4.map.FixedSizeMapTest.testEqualsNull(org.apache.commons.collections4.map.FixedSizeMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::decorated to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_78'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>clear<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testFailFastEntrySet(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> removed call to java/util/Map::clear &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_82'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>containsKey<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet2(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_86'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>containsValue<br/><b>Killed by : </b>org.apache.commons.collections4.map.PredicatedMapTest.testPut(org.apache.commons.collections4.map.PredicatedMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_90'>90</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_90'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>entrySet<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::entrySet to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_94'>94</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_94'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>get<br/><b>Killed by : </b>org.apache.commons.collections4.map.MultiValueMapTest.testGetCollection(org.apache.commons.collections4.map.MultiValueMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::get to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_98'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isEmpty<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_102'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>keySet<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::keySet to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_106'>106</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_106'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>put<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet2(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::put to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_110'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>putAll<br/><b>Killed by : </b>org.apache.commons.collections4.map.LazyMapTest.testMapPutAll(org.apache.commons.collections4.map.LazyMapTest)</span></span> removed call to java/util/Map::putAll &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_114'>114</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_114'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>remove<br/><b>Killed by : </b>org.apache.commons.collections4.map.TransformedMapTest.testTransformedMap(org.apache.commons.collections4.map.TransformedMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::remove to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_118'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>size<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet2(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_122'>122</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_122'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>values<br/><b>Killed by : </b>org.apache.commons.collections4.map.DefaultedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.DefaultedMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::values to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_127'>127</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_127'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>org.apache.commons.collections4.map.FixedSizeMapTest.testEqualsNull(org.apache.commons.collections4.map.FixedSizeMapTest)</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_128'>128</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_128'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>org.apache.commons.collections4.map.FixedSizeMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.FixedSizeMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_130'>130</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_130'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>org.apache.commons.collections4.map.FixedSizeMapTest.testEqualsNull(org.apache.commons.collections4.map.FixedSizeMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_135'>135</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_135'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>hashCode<br/><b>Killed by : </b>org.apache.commons.collections4.map.FixedSizeMapTest.testMapHashCode(org.apache.commons.collections4.map.FixedSizeMapTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6607ffd6_140'>140</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6607ffd6_140'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>org.apache.commons.collections4.map.LazyMapTest.testMapToString(org.apache.commons.collections4.map.LazyMapTest)</span></span> mutated return of Object value for org/apache/commons/collections4/map/AbstractMapDecorator::toString to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testFirstKey(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetRemove1(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetRemove1(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testRemove_KeyItem(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testAddedObjectsCanBeRetrievedByKey(org.apache.commons.collections4.collection.IndexedCollectionTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testDecorateFactory(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testPutWithList(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapToString(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMakeMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapPutNullValue(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testLastKey(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testFirstKey(org.apache.commons.collections4.map.PredicatedSortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testEqualsNull(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapPutNullKey(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testKeySetClearChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testValuesClearChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetRemove3(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testRemoveAllViaKeyedIterator(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapEquals(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionClear(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testValueCollectionType(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testSimpleSerialization(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testMultipleValues(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapClear(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testUnsafeDeSerialization(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapContainsValue(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapClear(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapToString(org.apache.commons.collections4.map.PredicatedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testIterableSortedMap(org.apache.commons.collections4.MapUtilsTest) (2 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testFactory_Decorate(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testTransformedMap(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testValuesClearChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEqualsNull(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetRemove3(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testSortOrder(org.apache.commons.collections4.map.PredicatedSortedMapTest) (4 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetContains1(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEqualsNull(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testRemove(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapRemove(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEmptyMapCompatibility(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testValues(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiRemoveByEntrySet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetClearChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet4(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.PredicatedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetRemove2(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapSize(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetRemove3(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRemove3(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testLazyMapFactory(org.apache.commons.collections4.MapUtilsTest) (3 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMakeMap(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRemove1(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testSize(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMakeMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapContainsValue(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testLastKey(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapSize(org.apache.commons.collections4.map.PredicatedSortedMapTest) (4 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapToString(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapEquals(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapPut(org.apache.commons.collections4.map.FixedSizeMapTest) (5 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testEmptyMapIterator(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetClearChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapToString(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapPut(org.apache.commons.collections4.map.PredicatedMapTest) (5 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiMapIteratorSet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (8 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetContains3(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapSize(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testPredicatedMap(org.apache.commons.collections4.MapUtilsTest) (3 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testDecorateFactory(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testFailFastKeySet(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetContains3(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testEqualsNull(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetRemove2(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetRemove2(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (6 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testValuesClearChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapPutAll(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapContainsKey(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapPutNullKey(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet3(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.MultiValueMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetRemove1(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testFullMapIterator(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapIsEmpty(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testValuesRetainAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapPut(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapToString(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testIterator(org.apache.commons.collections4.map.MultiValueMapTest) (6 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testFirstKey(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testOrderedMapIterator(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetContains1(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testObjectEqualsSelf(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapGet(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapContainsValue(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiModifyEntrySet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testDecorateFactory(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapHashCode(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapToString(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapIsEmpty(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapGet(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.PredicatedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testKeySetClearChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testFailFastValues(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testFailFastKeySet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionAdd(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapHashCode(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapPut(org.apache.commons.collections4.map.DefaultedMapTest) (8 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMakeMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapContainsValue(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.FixedSizeMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetRemove1(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testPutAll_KeyCollection(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEqualsNull(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapClear(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionRemove(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapContainsKey(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionSize(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetContains3(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testNextKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (4 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapGet(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.DefaultedMapTest) (3 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiKeySetValuesOrder(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (5 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapPutAll(org.apache.commons.collections4.map.DefaultedMapTest) (12 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapGet(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapClear(org.apache.commons.collections4.map.LazySortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapHashCode(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapSize(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testFailFastKeySet(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testPut(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testValuesClearChangesMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapPut(org.apache.commons.collections4.map.PredicatedSortedMapTest) (7 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.PredicatedSortedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.LazySortedMapTest) (4 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testMapIteratorSet(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapPutNullKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEqualsNull(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapContainsKey(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiGetKeyInverse(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testSimpleSerialization(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapIsEmpty(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testKeySetClearChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testDecorateFactory(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetClearChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testIterator_Key(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetRemove2(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapHashCode(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testValuesRetainAll(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapIsEmpty(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testRemoveAllViaIterator(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.UnmodifiableMapTest) (5 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testTotalSize(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapContainsValue(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.LazySortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRemove2(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetContains2(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiRemove(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapContainsValue(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapPut(org.apache.commons.collections4.map.LazyMapTest) (6 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapPutNullValue(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetRemove2(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testKeySetClearChangesMap(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapContainsKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.DefaultedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapRemove(org.apache.commons.collections4.map.DefaultedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapContainsKey(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEqualsNull(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapClear(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testFailFastKeySet(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapContainsKey(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (4 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetContains1(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMakeMap(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapContainsValue(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapPut(org.apache.commons.collections4.map.TransformedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapHashCode(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.TransformedMapTest) (3 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testIterableMap(org.apache.commons.collections4.MapUtilsTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetContains2(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetRemove3(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.LazyMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySet(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEqualsNull(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testPopulateMultiMap(org.apache.commons.collections4.MapUtilsTest) (4 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testValuesRemoveAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testContainsValue_Key(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.LazySortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testLazyMapTransformer(org.apache.commons.collections4.MapUtilsTest) (3 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testValuesClearChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapPut(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionRetainAll(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testFullIterator(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (5 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetRemove2(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionRemoveAll(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapToString(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetContains2(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testFailFastValues(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapClear(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapPutAll(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMakeMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapSize(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionToString(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testFailFastEntrySet(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapPutNullKey(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testFullMapCompatibility(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testFailFastEntrySet(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionContainsAll(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapContainsValue(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMakeMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapPut(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (9 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapClear(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapContainsKey(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapEquals(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionToArray(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testKeySetClearChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapEquals(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.PredicatedSortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.PredicatedMapTest) (4 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapPutAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapPutAll(org.apache.commons.collections4.map.PredicatedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testUnmodifiable(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapGet(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapGet(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testPutWithSet(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testSize_Key(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testLastKey(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapGet(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapRemove(org.apache.commons.collections4.map.LazyMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMakeMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testFailFastKeySet(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySet(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetRemove3(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testDecoratedCollectionIsIndexedOnCreation(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testFailFastEntrySet(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testObjectEqualsSelf(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapClear(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEqualsNull(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testSimpleSerialization(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (5 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMakeMap(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetContains3(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testValuesClearChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEntrySetContains2(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testValuesClearChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapSize(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testValuesRemoveChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionAddAll(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testValuesRetainAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testPut(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapToString(org.apache.commons.collections4.map.DefaultedMapTest) (2 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapEquals(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testSimpleSerialization(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionContains(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionIteratorRemove(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapGet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapSize(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testKeyedIterator(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.FixedSizeMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapPutAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.DefaultedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapPut(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testEmptyIterator(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapRemove(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testKeySetClearChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMakeMap(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapEquals(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapHashCode(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapEquals(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapRemove(org.apache.commons.collections4.map.LazySortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapSize(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapToString(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testUnmodifiable(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapSize(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testContainsValue(org.apache.commons.collections4.map.MultiValueMapTest) (2 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetClearChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testMapIteratorOrder(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (6 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testLastKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiClear(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (3 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapHashCode(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapPutNullKey(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetClearChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testEqualsNull(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapHashCode(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapPutNullValue(org.apache.commons.collections4.map.LazyMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapPutAll(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapPutAll(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapPutNullValue(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiInverse(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapContainsKey(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testPutAll_Map2(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testFailFastValues(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapRemove(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (12 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.LazySortedMapTest) (4 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testSimpleSerialization(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.LazySortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetContains3(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapEquals(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (2 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionIsEmpty(org.apache.commons.collections4.collection.IndexedCollectionTest) (3 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapClear(org.apache.commons.collections4.map.PredicatedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapHashCode(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.collection.IndexedCollectionTest) (9 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testSortOrder(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapEquals(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testEnsureDuplicateObjectsCauseException(org.apache.commons.collections4.collection.IndexedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapContainsKey(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testValuesRetainAll(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapContainsValue(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testUnmodifiable(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapRemove(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testRemoveAllViaEntryIterator(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testKeySetRetainAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.PredicatedSortedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEqualsNull(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testFactory_decorateTransform(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetRetainAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testKeySetRemoveChangesMap(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetRemoveAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (3 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testEqualsNull(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testKeyContainsValue(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testFirstKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testFirstKey(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapClear(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapPut(org.apache.commons.collections4.map.LazySortedMapTest) (7 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapSize(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiRemoveByKeySet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetRemove3(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testValuesRemoveChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testPutAll_Map1(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testPreviousKey(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testKeySetClearChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapHashCode(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapRemove(org.apache.commons.collections4.map.PredicatedMapTest) (3 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testKeySetRemoveAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (5 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testEqualsNull(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEntrySetContains1(org.apache.commons.collections4.map.FixedSizeMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiGetKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testMapSize(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testMapPutAll(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapContainsKey(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testMapToString(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetRemoveAll(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testObjectEqualsSelf(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testNoMappingReturnsNull(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testSimpleSerialization(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.UnmodifiableMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testMapRemove(org.apache.commons.collections4.map.FixedSizeMapTest) (4 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testFailFastEntrySet(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableMapTest.testFullMapCompatibility(org.apache.commons.collections4.map.UnmodifiableMapTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetRemove1(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testPreviousKey(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (2 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testSimpleSerialization(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.map.PredicatedSortedMapTest) (7 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEntrySetContains1(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (3 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testMapEquals(org.apache.commons.collections4.map.MultiValueMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionToArray2(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testValuesRetainAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapRemove(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testFailFastValues(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapIsEmpty(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testKeySetRemoveAll(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testTransformerDecorate(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testReindexUpdatesIndexWhenDecoratedCollectionIsModifiedSeparately(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testMapGet2(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapRemove(org.apache.commons.collections4.map.PredicatedSortedMapTest) (4 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testSimpleSerialization(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testBidiPut(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest.testObjectEqualsSelf(org.apache.commons.collections4.iterators.UnmodifiableOrderedMapIteratorTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testEntrySetRemove1(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapContainsValue(org.apache.commons.collections4.map.TransformedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest.testFailFastEntrySet(org.apache.commons.collections4.bidimap.AbstractOrderedBidiMapDecoratorTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMapEquals(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapEquals(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testKeySetRetainAll(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testFailFastValues(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEntrySetContains2(org.apache.commons.collections4.map.DefaultedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testLastKey(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapPutAll(org.apache.commons.collections4.map.PredicatedSortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testEntrySetRemoveChangesMap(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapPutNullValue(org.apache.commons.collections4.map.LazySortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testEntrySetClearChangesMap(org.apache.commons.collections4.map.LazyMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testMapHashCode(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedSortedMapTest.testMapClear(org.apache.commons.collections4.map.PredicatedSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testEmptyMapCompatibility(org.apache.commons.collections4.map.FixedSizeMapTest) (2 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testValuesRemoveAll(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazyMapTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.map.LazyMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testGetCollection(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.MultiValueMapTest.testTotalSizeA(org.apache.commons.collections4.map.MultiValueMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.FixedSizeMapTest.testKeySetIteratorRemoveChangesMap(org.apache.commons.collections4.map.FixedSizeMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testEntrySetRetainAll(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testEntrySetClearChangesMap(org.apache.commons.collections4.map.PredicatedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testMakeMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.PredicatedMapTest.testMapContainsValue(org.apache.commons.collections4.map.PredicatedMapTest) (1 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableSortedMapTest.testValuesIteratorRemoveChangesMap(org.apache.commons.collections4.map.UnmodifiableSortedMapTest) (2 ms)</li><li>org.apache.commons.collections4.collection.IndexedCollectionTest.testCollectionIterator(org.apache.commons.collections4.collection.IndexedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.map.TransformedMapTest.testMapContainsKey(org.apache.commons.collections4.map.TransformedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.DefaultedMapTest.testEqualsNull(org.apache.commons.collections4.map.DefaultedMapTest) (1 ms)</li><li>org.apache.commons.collections4.MapUtilsTest.testConvertResourceBundle(org.apache.commons.collections4.MapUtilsTest) (14 ms)</li><li>org.apache.commons.collections4.map.UnmodifiableOrderedMapTest.testNextKey(org.apache.commons.collections4.map.UnmodifiableOrderedMapTest) (0 ms)</li><li>org.apache.commons.collections4.map.LazySortedMapTest.testMapToString(org.apache.commons.collections4.map.LazySortedMapTest) (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.4
+
+</body>
+</html>

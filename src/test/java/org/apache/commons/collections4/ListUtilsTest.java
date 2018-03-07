@@ -188,6 +188,14 @@ public class ListUtilsTest {
 
         assertEquals(true, a.equals(b));
         assertEquals(true, ListUtils.isEqualList(a, b));
+        //begin added test cases
+        a.add(null);
+        b.add(null);
+        assertEquals(true, ListUtils.isEqualList(a, b));
+        a.add(null);
+        b.add("a");
+        assertEquals(false, ListUtils.isEqualList(a, b));
+        //end added test cases
         a.clear();
         assertEquals(false, ListUtils.isEqualList(a, b));
         assertEquals(false, ListUtils.isEqualList(a, null));

@@ -1,0 +1,2398 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+
+.pop {outline:none; }
+.pop strong {line-height:30px;}
+.pop {text-decoration:none;}
+.pop span { z-index:10;display:none; padding:14px 20px; margin-top:-30px; margin-left:28px; width:800px; line-height:16px; word-wrap:break-word; }
+.pop:hover span{ display:inline; position:absolute; color:#111; border:1px solid #DCA; background:#fffAF0;}
+
+.pop span { border-radius:4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 5px 5px 8px #CCC; -webkit-box-shadow: 5px 5px 8px #CCC; box-shadow: 5px 5px 8px #CCC; }
+</style>
+
+</head>
+<body>
+
+
+<h1>TransformedCollection.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Licensed to the Apache Software Foundation (ASF) under one or more</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * contributor license agreements.  See the NOTICE file distributed with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * this work for additional information regarding copyright ownership.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * The ASF licenses this file to You under the Apache License, Version 2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_6'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * (the &#34;License&#34;); you may not use this file except in compliance with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_7'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * the License.  You may obtain a copy of the License at</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_8'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      http://www.apache.org/licenses/LICENSE-2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Unless required by applicable law or agreed to in writing, software</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_12'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * distributed under the License is distributed on an &#34;AS IS&#34; BASIS,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_13'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_14'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * See the License for the specific language governing permissions and</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_15'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * limitations under the License.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_16'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_17'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.apache.commons.collections4.collection;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_18'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_19'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Collection;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_22'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.collections4.Transformer;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_26'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Decorates another {@link Collection} to transform objects that are added.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_27'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_28'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * The add methods are affected by this class.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_29'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Thus objects must be removed or searched for using their transformed form.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_30'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * For example, if the transformation converts Strings to Integers, you must</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_31'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * use the Integer form to remove objects.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_32'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_33'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * This class is Serializable from Commons Collections 3.1.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_34'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_35'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @param &#60;E&#62; the type of the elements in the collection</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_36'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @since 3.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_37'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @version $Id: TransformedCollection.java 1686855 2015-06-22 13:00:27Z tn $</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_38'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_39'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class TransformedCollection&#60;E&#62; extends AbstractCollectionDecorator&#60;E&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_40'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_41'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** Serialization version */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_42'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 8692300188161871514L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_43'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_44'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** The transformer to use */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_45'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected final Transformer&#60;? super E, ? extends E&#62; transformer;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_46'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_47'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_48'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Factory method to create a transforming collection.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_49'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_50'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * If there are any elements already in the collection being decorated, they</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_51'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * are NOT transformed.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_52'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Contrast this with {@link #transformedCollection(Collection, Transformer)}.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_53'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_54'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param &#60;E&#62; the type of the elements in the collection</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_55'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param coll  the collection to decorate, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_56'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param transformer  the transformer to use for conversion, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_57'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return a new transformed collection</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_58'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws NullPointerException if collection or transformer is null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_59'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @since 4.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_60'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_61'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static &#60;E&#62; TransformedCollection&#60;E&#62; transformingCollection(final Collection&#60;E&#62; coll,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_62'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            final Transformer&#60;? super E, ? extends E&#62; transformer) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_63'/>
+63
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_63'>1</a>
+<span>
+1. transformingCollection : mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transformingCollection to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return new TransformedCollection&#60;E&#62;(coll, transformer);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_64'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_65'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_66'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_67'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Factory method to create a transforming collection that will transform</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_68'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * existing contents of the specified collection.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_69'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_70'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * If there are any elements already in the collection being decorated, they</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_71'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * will be transformed by this method.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_72'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Contrast this with {@link #transformingCollection(Collection, Transformer)}.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_73'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_74'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param &#60;E&#62; the type of the elements in the collection</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_75'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param collection  the collection to decorate, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_76'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param transformer  the transformer to use for conversion, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_77'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return a new transformed Collection</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_78'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws NullPointerException if collection or transformer is null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_79'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @since 4.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_80'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_81'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static &#60;E&#62; TransformedCollection&#60;E&#62; transformedCollection(final Collection&#60;E&#62; collection,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_82'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            final Transformer&#60;? super E, ? extends E&#62; transformer) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_83'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_84'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        final TransformedCollection&#60;E&#62; decorated = new TransformedCollection&#60;E&#62;(collection, transformer);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_85'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        // null collection &#38; transformer are disallowed by the constructor call above</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_86'/>
+86
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_86'>2</a>
+<span>
+1. transformedCollection : changed conditional boundary &rarr; SURVIVED<br/>
+2. transformedCollection : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (collection.size() &#62; 0) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_87'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            @SuppressWarnings(&#34;unchecked&#34;) // collection is of type E</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_88'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            final E[] values = (E[]) collection.toArray(); // NOPMD - false positive for generics</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_89'/>
+89
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_89'>1</a>
+<span>
+1. transformedCollection : removed call to java/util/Collection::clear &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            collection.clear();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_90'/>
+90
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_90'>3</a>
+<span>
+1. transformedCollection : changed conditional boundary &rarr; KILLED<br/>
+2. transformedCollection : Changed increment from 1 to -1 &rarr; KILLED<br/>
+3. transformedCollection : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (final E value : values) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_91'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                decorated.decorated().add(transformer.transform(value));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_92'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_93'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_94'/>
+94
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_94'>1</a>
+<span>
+1. transformedCollection : mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transformedCollection to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_95'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_96'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_97'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    //-----------------------------------------------------------------------</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_98'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_99'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Constructor that wraps (not copies).</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_100'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_101'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * If there are any elements already in the collection being decorated, they</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_102'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * are NOT transformed.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_103'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_104'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param coll  the collection to decorate, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_105'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param transformer  the transformer to use for conversion, must not be null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_106'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws NullPointerException if collection or transformer is null</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_107'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_108'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected TransformedCollection(final Collection&#60;E&#62; coll, final Transformer&#60;? super E, ? extends E&#62; transformer) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_109'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        super(coll);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_110'/>
+110
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_110'>1</a>
+<span>
+1. <init> : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (transformer == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_111'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw new NullPointerException(&#34;Transformer must not be null&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_112'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_113'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.transformer = transformer;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_114'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_115'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_116'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_117'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Transforms an object.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_118'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_119'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The transformer itself may throw an exception if necessary.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_120'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_121'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param object  the object to transform</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_122'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return a transformed object</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_123'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_124'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected E transform(final E object) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_125'/>
+125
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_125'>1</a>
+<span>
+1. transform : mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transform to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return transformer.transform(object);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_126'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_127'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_128'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_129'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Transforms a collection.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_130'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_131'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The transformer itself may throw an exception if necessary.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_132'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_133'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param coll  the collection to transform</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_134'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return a transformed object</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_135'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_136'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Collection&#60;E&#62; transform(final Collection&#60;? extends E&#62; coll) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_137'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        final List&#60;E&#62; list = new ArrayList&#60;E&#62;(coll.size());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_138'/>
+138
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_138'>1</a>
+<span>
+1. transform : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (final E item : coll) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_139'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            list.add(transform(item));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_140'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_141'/>
+141
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_141'>1</a>
+<span>
+1. transform : mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transform to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return list;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_142'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_143'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_144'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    //-----------------------------------------------------------------------</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_145'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_146'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean add(final E object) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_147'/>
+147
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_147'>1</a>
+<span>
+1. add : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().add(transform(object));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_148'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_149'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_150'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_151'/>
+151
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_151'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean addAll(final Collection&#60;? extends E&#62; coll) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_152'/>
+152
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_152'>1</a>
+<span>
+1. addAll : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return decorated().addAll(transform(coll));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_153'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_154'/>
+154
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_154'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@feebfa_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_155'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_63'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transformingCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testEqualsNull(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transformingCollection to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_86'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_89'>89</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_89'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> removed call to java/util/Collection::clear &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_90'>90</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_90'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> Changed increment from 1 to -1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_94'>94</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_94'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transformedCollection<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transformedCollection to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_110'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b><init><br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testEqualsNull(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_125'>125</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_125'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transform<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transform to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_138'>138</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_138'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transform<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionAddAll(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_141'>141</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_141'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>transform<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionAddAll(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> mutated return of Object value for org/apache/commons/collections4/collection/TransformedCollection::transform to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_147'>147</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_147'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>add<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionAdd(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@feebfa_152'>152</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@feebfa_152'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addAll<br/><b>Killed by : </b>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionAddAll(org.apache.commons.collections4.collection.TransformedCollectionTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>org.apache.commons.collections4.CollectionUtilsTest.testTransformedCollection(org.apache.commons.collections4.CollectionUtilsTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListSetByIndexBoundsChecking(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListListIteratorNextRemovePrevious(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testEmptyQueueCompatibility(org.apache.commons.collections4.queue.TransformedQueueTest) (3 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionToArray2(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListIteratorSet(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionIterator(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.collection.TransformedCollectionTest) (3 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.set.TransformedSetTest) (3 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testTransformedQueue_decorateTransform(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListAddByIndexBoundsChecking(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListRemoveByIndexBoundsChecking(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListRemoveByIndex(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionContains(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListListIteratorByIndex(org.apache.commons.collections4.list.TransformedListTest) (3 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionIterator(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testObjectEqualsSelf(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testTransformedQueue(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testObjectEqualsSelf(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListAddByIndex(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testSimpleSerialization(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListRemoveByIndexBoundsChecking2(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionAddAll(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testQueueElement(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListListIterator(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListListIteratorPreviousRemoveNext(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testQueuePeek(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListLastIndexOf(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testSimpleSerialization(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionIsEmpty(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionRetainAll(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionToArray(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testTransformedList(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListIteratorAdd(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionIteratorRemove(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionRemove(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionRetainAll(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionContainsAll(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.BagUtilsTest.testTransformedBag(org.apache.commons.collections4.BagUtilsTest) (24 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionClear(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testFullListCompatibility(org.apache.commons.collections4.list.TransformedListTest) (3 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionClear(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testFullQueueCompatibility(org.apache.commons.collections4.queue.TransformedQueueTest) (3 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection_decorateTransform(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionToString(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionRemove(org.apache.commons.collections4.queue.TransformedQueueTest) (2 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListEquals(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionToString(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testQueueRemove(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionAdd(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionAdd(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionRetainAll(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.collection.TransformedCollectionTest) (2 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionContainsAll(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.QueueUtilsTest.testTransformedQueue(org.apache.commons.collections4.QueueUtilsTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionContains(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testEmptyQueueSerialization(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testFullQueueSerialization(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testTransformedSet_decorateTransform(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionIsEmpty(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionToString(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListGetByIndexBoundsChecking(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testSetHashCode(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionIterator(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionAdd(org.apache.commons.collections4.list.TransformedListTest) (2 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionToArray2(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testTransformedCollection(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionSize(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionSize(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionClear(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListListIteratorNextRemoveNext(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testEmptyListSerialization(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionToArray2(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionAddAll(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionAddAll(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionClear(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.CollectionUtilsTest.testTransformedCollection_2(org.apache.commons.collections4.CollectionUtilsTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListHashCode(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testObjectEqualsSelf(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListGetByIndex(org.apache.commons.collections4.list.TransformedListTest) (2 ms)</li><li>org.apache.commons.collections4.BagUtilsTest.testTransformedSortedBag(org.apache.commons.collections4.BagUtilsTest) (3 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionToArray(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionContains(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testSimpleSerialization(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionAddAll(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionContainsAll(org.apache.commons.collections4.collection.TransformedCollectionTest) (5 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.list.TransformedListTest) (5 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListListIteratorPreviousRemovePrevious(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testEqualsNull(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionToArray2(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionIteratorRemove(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListSetByIndexBoundsChecking2(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionIteratorRemove(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionSize(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testTransformedSet(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testObjectEqualsSelf(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testEmptyListCompatibility(org.apache.commons.collections4.list.TransformedListTest) (4 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testQueueOffer(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testSetEquals(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionRemoveAll(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testObjectHashCodeEqualsContract(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCanonicalEmptyCollectionExists(org.apache.commons.collections4.set.TransformedSetTest) (2 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testSerializeDeserializeThenCompare(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionToArray(org.apache.commons.collections4.set.TransformedSetTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionRemove(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testEqualsNull(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionRemoveAll(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionAdd(org.apache.commons.collections4.collection.TransformedCollectionTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionRemoveAll(org.apache.commons.collections4.queue.TransformedQueueTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionContainsAll(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListSetByIndex(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionToArray(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListIndexOf(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.collection.TransformedCollectionTest.testCollectionRemove(org.apache.commons.collections4.collection.TransformedCollectionTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionContains(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionToString(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListGetByIndexBoundsChecking2(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionRetainAll(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testObjectHashCodeEqualsSelfHashCode(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testTransformedList_decorateTransform(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionIsEmpty(org.apache.commons.collections4.list.TransformedListTest) (2 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionIteratorRemove(org.apache.commons.collections4.set.TransformedSetTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testListAddByIndexBoundsChecking2(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionRemoveAll(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCanonicalFullCollectionExists(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testQueuePoll(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testFullListSerialization(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testCollectionSize(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testEqualsNull(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testEqualsNull(org.apache.commons.collections4.list.TransformedListTest) (1 ms)</li><li>org.apache.commons.collections4.list.TransformedListTest.testSimpleSerialization(org.apache.commons.collections4.list.TransformedListTest) (0 ms)</li><li>org.apache.commons.collections4.queue.TransformedQueueTest.testCollectionIsEmpty(org.apache.commons.collections4.queue.TransformedQueueTest) (0 ms)</li><li>org.apache.commons.collections4.set.TransformedSetTest.testCollectionIterator(org.apache.commons.collections4.set.TransformedSetTest) (2 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.4
+
+</body>
+</html>

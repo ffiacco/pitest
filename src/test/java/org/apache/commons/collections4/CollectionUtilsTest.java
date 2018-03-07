@@ -1188,7 +1188,8 @@ public class CollectionUtilsTest extends MockTestCase {
         List<Integer> output = new ArrayList<Integer>();
         List<Integer> rejected = new ArrayList<Integer>();
 
-        CollectionUtils.select(input, EQUALS_TWO, output, rejected);
+        //modified line
+        output = CollectionUtils.select(input, EQUALS_TWO, output, rejected);
 
         // output contains 2
         assertEquals(1, output.size());
